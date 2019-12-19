@@ -1,0 +1,19 @@
+﻿@model ListViewModel
+
+@{
+    ViewData["Title"] = "Список скидок";
+}
+
+<h1>Список скидок</h1>
+
+@foreach (var d in @Model.Discounts) {
+    <div>
+        <h3>@d.Title</h3>
+        <p>@d.Description</p>
+        <p>Добавлено @d.DateAdd</p>
+        <p>@d.Image</p>
+        <hr />
+    </div>
+}
+
+@Html.Partial("_PageNavigator")
