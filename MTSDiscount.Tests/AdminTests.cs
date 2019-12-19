@@ -33,7 +33,7 @@ namespace MTSDiscount.Tests {
         public void Index_Contains_All_Discounts() {
             
             // Действие
-            result = ((IEnumerable<Discount>)controller.Index().
+            result = ((IEnumerable<Discount>)controller.List().
                 ViewData.Model).ToList();
             
             // Утверждение

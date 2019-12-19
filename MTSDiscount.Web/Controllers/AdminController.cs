@@ -17,7 +17,9 @@ namespace MTSDiscount.Web.Controllers {
         }
 
         // GET: Admin
-        public ViewResult Index(int page = 1) {
+        [Route("Admin")]
+        [Route("Admin/page{page}")]
+        public ViewResult List(int page = 1) {
 
             var discounts = _discountRepository.GetDiscounts;
       

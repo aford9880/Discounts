@@ -13,8 +13,10 @@ namespace MTSDiscount.Web.Controllers {
             _discountRepository = discountRepository;
         }
 
-        // GET: Discounts
-        public ViewResult Index(int page = 1) {
+        // GET: Discounts        
+        [Route("")]
+        [Route("page{page}")]        
+        public ViewResult List(int page = 1) {
            
             var discounts = _discountRepository.GetDiscounts;
             var count = discounts.Count();

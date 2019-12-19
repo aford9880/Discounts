@@ -33,7 +33,7 @@ namespace MTSDiscount.Tests {
         public void Can_Paginate() {
 
             // Действие
-            result = ((IEnumerable<Discount>)controller.Index(2).
+            result = ((IEnumerable<Discount>)controller.List(2).
                 ViewData.Model).ToList();
 
             // Утверждение (assert)

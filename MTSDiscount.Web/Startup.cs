@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +29,7 @@ namespace MTSDiscount.Web {
             // подключаем файл коннекта к БД, _confString указывает с какой строкой мы работаем
             services. AddDbContext<AppDbContext>(options => options.UseSqlServer(_confString.GetConnectionString("DefaultConnection")));
             // Связывание: 1-й параметр - с каким интерфейсом работаем, 2-й - какой класс реализует этот интерфейс
-            services.AddTransient<IDiscountRepository, DiscountRepository>(); // интерфейс IDiscountRepository реализуется в классе DiscountRepository
+            services.AddTransient<IDiscountRepository, DiscountRepository>(); // интерфейс IDiscountRepository реализуется в классе DiscountRepository                                   
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,20 +47,23 @@ namespace MTSDiscount.Web {
             app.UseRouting();
 
             app.UseAuthorization();
-
+            
             app.UseEndpoints(endpoints => {
-                
+
+                /*endpoints.MapControllerRoute(
+                    name: null,
+                    //url: "Page{page}",
+                    defaults: new {
+                        controller = "Game", action = "List"
+                    });*/
+
                 endpoints.MapControllerRoute(
-                    name: "Admin",
-                    pattern: "Admin/Index/{id?}");
-                
-                endpoints.MapControllerRoute(
-                    name: "Discounts",
-                    pattern: "Discounts/{action=Index}/{id?}");
-                
+                    name: "list",
+                    pattern: "controller/action/{page?}");                    
+
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Discounts}/{action=Index}/{id?}");
+                    pattern: "{controller=Discounts}/{action=List}/{page?}");
             });
 
             using (var scope = app.ApplicationServices.CreateScope()) { // создаем область (окружение) для использования сервиса AppDBContent
