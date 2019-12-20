@@ -27,6 +27,7 @@ namespace MTSDiscount.Web.Controllers {
                 PageViewModel = pageViewModel,
                 Discounts = items
             };
+            ViewBag.Current = "Discounts";
             return View(viewModel);
         }
 

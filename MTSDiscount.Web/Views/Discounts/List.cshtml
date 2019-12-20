@@ -4,16 +4,15 @@
     ViewData["Title"] = "Список скидок";
 }
 
-<h1>Список скидок</h1>
-
+<h3>Список скидок</h3>
 @foreach (var d in @Model.Discounts) {
-    <div>
-        <h3>@d.Title</h3>
-        <p>@d.Description</p>
-        <p>Добавлено @d.DateAdd</p>
+    <div class="card card-body bg-light m-2">
+        <h3>
+            @d.Title<span class="badge badge-primary float-right">Добавлено @d.DateAdd</span>
+        </h3>
+        <span class="lead">@d.Description</span>
         <p>@d.Image</p>
-        <hr />
     </div>
 }
 
-@Html.Partial("_PageNavigator")
+<partial name="_PageNavigator">

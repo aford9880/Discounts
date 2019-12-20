@@ -31,6 +31,7 @@ namespace MTSDiscount.Web.Controllers {
                 PageViewModel = pageViewModel,
                 Discounts = items
             };
+            ViewBag.Current = "Admin";
             return View(viewModel);
         }
 
